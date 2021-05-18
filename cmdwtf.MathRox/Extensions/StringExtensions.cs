@@ -11,7 +11,7 @@ namespace cmdwtf.MathRox.Extensions
 		public static string GetRandom(this string[] arr)
 			=> arr[_rand.Next(arr.Length)];
 
-		public static string Clip(string value, int maxLength)
+		public static string Clip(this string value, int maxLength)
 		{
 			if (value.Length > maxLength)
 			{

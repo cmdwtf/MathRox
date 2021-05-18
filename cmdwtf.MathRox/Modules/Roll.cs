@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 
 using cmdwtf.MathRox.Configuration;
+using cmdwtf.MathRox.Extensions;
 using cmdwtf.NumberStones;
 
 using Discord;
@@ -92,7 +93,7 @@ namespace cmdwtf.MathRox.Modules
 		{
 			DiceExpression diceExp = Dice.Parse(expression);
 			DiceResult rollResult = diceExp.Roll();
-			string termResults = rollResult.Results.ToString();
+			string termResults = rollResult.Results.ToString().Clip(512);
 			await Context.Message.ReplyAsync($"You rolled: {rollResult.Value} (parsed as `{diceExp}`, terms: {termResults})");
 		}
 
