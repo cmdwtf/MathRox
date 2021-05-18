@@ -71,10 +71,13 @@ namespace cmdwtf.MathRox
 			})
 			.ConfigureAppConfiguration((context, builder) =>
 			{
+				builder.AddJsonFile("appsettings.json", optional: true);
+
 				if (context.HostingEnvironment.IsDevelopment())
 				{
 					builder.AddUserSecrets<Program>();
 				}
+
 			})
 			.ConfigureServices(services =>
 			{
