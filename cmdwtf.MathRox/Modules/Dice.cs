@@ -1,8 +1,10 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using cmdwtf.MathRox.Configuration;
-using cmdwtf.MathRox.Extensions;
+using cmdwtf.MathRox.Messages;
 using cmdwtf.NumberStones;
 
 using Discord;
@@ -47,16 +49,28 @@ namespace cmdwtf.MathRox.Modules
 				return;
 			}
 
-			// check for a memorized roll name
-			if (expression.StartsWith("$"))
+			// check for memorized roll expressions
+			if (await CheckMemorizedRollAsync(expression))
 			{
-				// check for an assignment or a use
-				await TryHandleRememberDiceAsync(expression);
+				// a memorized roll was handled
 				return;
 			}
 
 			// no earlier cases handled, must be a normal roll expression!
 			await RollDice(expression);
+		}
+
+		private async Task<bool> CheckMemorizedRollAsync(string expression)
+		{
+			// check for a memorized roll name
+			if (expression.StartsWith("$"))
+			{
+				// check for an assignment or a use
+				await TryHandleRememberDiceAsync(expression);
+				return true;
+			}
+
+			return false;
 		}
 
 		private async Task TryHandleRememberDiceAsync(string expression)
@@ -93,8 +107,8 @@ namespace cmdwtf.MathRox.Modules
 		{
 			DiceExpression diceExp = NumberStones.Dice.Parse(expression);
 			DiceResult rollResult = diceExp.Roll();
-			string termResults = rollResult.Results.ToString().Clip(512);
-			await Context.Message.ReplyAsync($"You rolled: {rollResult.Value} (parsed as `{diceExp}`, terms: {termResults})");
+			var embed = rollResult.ToEmbed(Context.Message);
+			await Context.Message.ReplyAsync(embed: embed);
 		}
 
 		[Command("$")]
@@ -102,6 +116,21 @@ namespace cmdwtf.MathRox.Modules
 		[Summary("Recalls a list of currently saved dice.")]
 		public async Task RememberDiceAsync()
 			=> await Context.Message.ReplyAsync($"Dice memory coming soon...");
+
+		[Command("character")]
+		[Alias("char", "dnd", "d&d", "stats")]
+		[Remarks("You want a quick 5e stat block? You got a quick 5e stat block.")]
+		[Summary("Rolls 4d6, dropping the lowest one, a total of 6 times. Instant character!")]
+		public async Task RollCharacterAsync()
+		{
+			DiceExpression statRoll = NumberStones.Dice.Parse("4d6dl1");
+			IEnumerable<DiceResult> results =
+				from _ in Enumerable.Range(0, 6)
+				select statRoll.Roll();
+
+			Embed embed = results.ToCharacterEmbed(Context.Message);
+			await Context.Message.ReplyAsync(embed: embed);
+		}
 
 		private async Task ReplyErrorAsync(string message)
 		{
