@@ -13,8 +13,8 @@ using Microsoft.Extensions.Logging;
 namespace cmdwtf.MathRox.Modules
 {
 	[Name("Dice Dice Baby")]
-	[Group("roll"), Alias("r", "dice")]
-	public class Roll : ModuleBase<SocketCommandContext>
+	[Group("roll"), Alias("dice", "r")]
+	public class Dice : ModuleBase<SocketCommandContext>
 	{
 		private readonly Settings _settings;
 		private readonly ILogger _logger;
@@ -26,7 +26,7 @@ namespace cmdwtf.MathRox.Modules
 		/// </summary>
 		/// <param name="settings">The program's settings.</param>
 		/// <param name="logger">A spot to output logs.</param>
-		public Roll(Settings settings, ILogger<Roll> logger)
+		public Dice(Settings settings, ILogger<Dice> logger)
 		{
 			_settings = settings;
 			_logger = logger;
@@ -43,7 +43,7 @@ namespace cmdwtf.MathRox.Modules
 			// check for no arguments
 			if (string.IsNullOrWhiteSpace(expression))
 			{
-				await ReplyErrorAsync($"{nameof(Roll)} expects at least one parameter.");
+				await ReplyErrorAsync($"{nameof(Dice)} expects at least one parameter.");
 				return;
 			}
 
@@ -83,7 +83,7 @@ namespace cmdwtf.MathRox.Modules
 			}
 
 			// make sure the expression is valid
-			DiceExpression parsed = Dice.Parse(assignExpression);
+			DiceExpression parsed = NumberStones.Dice.Parse(assignExpression);
 
 			// #nyi remember the roll for later!
 			await ReplyErrorAsync($"NYI: Storing ${rollName} as {parsed}");
@@ -91,7 +91,7 @@ namespace cmdwtf.MathRox.Modules
 
 		private async Task RollDice(string expression)
 		{
-			DiceExpression diceExp = Dice.Parse(expression);
+			DiceExpression diceExp = NumberStones.Dice.Parse(expression);
 			DiceResult rollResult = diceExp.Roll();
 			string termResults = rollResult.Results.ToString().Clip(512);
 			await Context.Message.ReplyAsync($"You rolled: {rollResult.Value} (parsed as `{diceExp}`, terms: {termResults})");
