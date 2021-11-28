@@ -12,14 +12,13 @@ Almost entirely born out of a desire to replace the late [Sidekick](https://gith
 
 ## 📝 License
 
-MathRox is licensed under the AGPL 3.0 (SPDX-License-Identifier: AGPL-3.0-only). If you're interested in MathRox under other terms, please contact the authors. MathRox makes use of several open source packages. Those packages are each covered by their own copyrights and licenses, which are available via the tooling you use to restore the packages when building. As well, some individual files are licensed seperately, as designated at the top of those files.
+MathRox is licensed under the Zero-Clause BSD License (SPDX-License-Identifier: 0BSD). If you're interested in MathRox under other terms, please contact the authors. MathRox makes use of several open source packages. Those packages are each covered by their own copyrights and licenses, which are available via the tooling you use to restore the packages when building. As well, some individual files are licensed seperately, as designated at the top of those files.
 
 Copyright © 2021 [Chris March Dailey](https://cmd.wtf)
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, version 3.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted.
 
-You should have received a copy of the GNU Affero General Public License along with this program. If not, see <https://www.gnu.org/licenses/>
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 ### Licensed Software
 

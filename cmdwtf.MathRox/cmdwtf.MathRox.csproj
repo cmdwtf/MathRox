@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>8B90E3FE-EC8E-440D-9296-1CC4F4E82B12</UserSecretsId>
-    <PackageLicenseExpression>AGPL-3.0-only</PackageLicenseExpression>
+    <PackageLicenseExpression>0BSD</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://cmd.wtf/projects/mathrox</PackageProjectUrl>
   </PropertyGroup>
